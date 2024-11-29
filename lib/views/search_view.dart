@@ -15,19 +15,19 @@ class SearchView extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacementNamed(context, HomeView.id);
             },
-            icon:const Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
             ),
           ),
-          title:const Text(
+          title: const Text(
             "Search a City",
             style: TextStyle(
               color: Colors.white,
             ),
           ),
         ),
-        body:const SearchItem() ,
+        body: const SearchItem(),
       ),
     );
   }

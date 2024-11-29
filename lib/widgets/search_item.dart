@@ -1,9 +1,8 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:weatherapp/models/weather_model.dart';
-import 'package:weatherapp/services/weather_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weatherapp/cubits/get_weather_cubit/get_weather_cubit.dart';
 
 class SearchItem extends StatelessWidget {
   const SearchItem({super.key});
@@ -15,8 +14,8 @@ class SearchItem extends StatelessWidget {
       child: Center(
         child: TextField(
           onSubmitted: (value) async {
-             weatherModel =
-                await WeatherService(Dio()).getCurrentWeather(cityName: value);
+            var getWeatherCubit = BlocProvider.of<GetWeatherCubit>(context);
+            getWeatherCubit.getWeather(cityName: value);
             Navigator.pop(context);
           },
           decoration: const InputDecoration(
@@ -34,5 +33,3 @@ class SearchItem extends StatelessWidget {
     );
   }
 }
-
-WeatherModel? weatherModel;

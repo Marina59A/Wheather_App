@@ -1,9 +1,13 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:weatherapp/models/weather_model.dart';
 
 class WeatherItem extends StatelessWidget {
-  const WeatherItem({super.key});
+  const WeatherItem({super.key, required this.weatherModel});
+  final WeatherModel weatherModel;
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +16,11 @@ class WeatherItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Alexandria',
+            weatherModel.cityName,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
           Text(
-            'updated at : 23:46',
+            'updated at : ${weatherModel.date.hour}:${weatherModel.date.minute}',
             style: TextStyle(
               fontSize: 23,
             ),
@@ -26,10 +30,10 @@ class WeatherItem extends StatelessWidget {
           ),
           Row(
             children: [
-              Expanded(child: Image.asset('assets/images/cloudy.png')),
+              Expanded(child: Image.network('https:${weatherModel.image!}')),
               Center(
                 child: Text(
-                  '17',
+                  weatherModel.temp.toString(),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                 ),
               ),
@@ -37,11 +41,11 @@ class WeatherItem extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'maxTerm:17',
+                      'maxTerm:${weatherModel.maxTemp.round()}',
                       style: TextStyle(fontSize: 16),
                     ),
                     Text(
-                      'minTerm:10',
+                      'minTerm:${weatherModel.minTemp.round()}',
                       style: TextStyle(fontSize: 16),
                     ),
                   ],
@@ -52,12 +56,16 @@ class WeatherItem extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Text(
-            'Light Rain',
+          Text(
+            weatherModel.weatherCondation,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
         ],
       ),
     );
   }
+}
+
+DateTime stringToDateTime(String value) {
+  return DateTime.parse(value);
 }
