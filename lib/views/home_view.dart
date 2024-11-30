@@ -13,10 +13,9 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Theme.of(context).primaryColor,
           title: const Text(
             "Weather App",
-            style: TextStyle(color: Colors.white),
           ),
           actions: [
             IconButton(
@@ -25,7 +24,6 @@ class HomeView extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.search,
-                color: Colors.white,
               ),
             ),
           ],

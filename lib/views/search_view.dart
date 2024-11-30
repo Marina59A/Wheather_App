@@ -10,7 +10,6 @@ class SearchView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
           leading: IconButton(
             onPressed: () {
               Navigator.pushReplacementNamed(context, HomeView.id);
